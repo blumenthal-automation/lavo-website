@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavo - Automation, Websites & Growth Marketing</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #32373c;
+      --white: #ffffff;
+      --light-gray: #eeeeee;
+      --accent: #ff5e00;
+      --transition: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    /* Typography */
+    h1 { font-size: 42px; font-weight: 700; line-height: 1.2; }
+    h2 { font-size: 36px; font-weight: 600; line-height: 1.25; }
+    h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+    p { font-size: 18px; font-weight: 400; line-height: 1.6; }
+    .small-text { font-size: 14px; font-weight: 400; line-height: 1.5; }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-accent {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.3s ease;
+    }
+
+    /* Hero */
+    .hero {
+      margin-top: 64px;
+      background: var(--primary);
+      color: var(--white);
+      padding: 80px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      min-height: 560px;
+    }
+
+    .hero-content h1 {
+      margin-bottom: 24px;
+      animation: slideUpFade 0.8s ease-out 0s forwards;
+      opacity: 0;
+    }
+
+    .hero-content p {
+      color: var(--light-gray);
+      margin-bottom: 48px;
+      animation: slideUpFade 0.8s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      animation: fadeIn 0.6s ease-out 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-visual {
+      width: 320px;
+      height: 320px;
+      background: linear-gradient(135deg, var(--accent), #ff8c42);
+      border-radius: 8px;
+      animation: fadeIn 0.8s ease-out 0.3s forwards;
+      opacity: 0;
+    }
+
+    /* Buttons */
+    button, .btn {
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(255, 94, 0, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+
+    .btn-secondary:hover {
+      background: var(--white);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Logos Section */
+    .logos-section {
+      background: var(--white);
+      padding: 80px 48px;
+      text-align: center;
+    }
+
+    .logos-section h2 {
+      margin-bottom: 64px;
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+    }
+
+    .logo-item {
+      background: var(--light-gray);
+      padding: 16px;
+      border-radius: 4px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 14px;
+      opacity: 0;
+      animation: fadeInSlide 0.6s ease-out forwards;
+    }
+
+    /* Features */
+    .features {
+      background: var(--primary);
+      color: var(--white);
+      padding: 80px 48px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      padding: 32px;
+      border-left: 4px solid var(--accent);
+      border-radius: 0;
+      opacity: 0;
+      animation: fadeInSlide 0.6s ease-out forwards;
+      transition: all 0.3s var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+    }
+
+    .feature-number {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+
+    .feature-card p {
+      color: var(--light-gray);
+      font-size: 16px;
+    }
+
+    /* Services */
+    .services {
+      background: var(--light-gray);
+      padding: 80px 48px;
+    }
+
+    .services h2 {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .tab-bar {
+      background: var(--primary);
+      display: flex;
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    .tab {
+      padding: 16px 32px;
+      background: var(--primary);
+      color: var(--light-gray);
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .tab.active {
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      font-weight: 600;
+    }
+
+    .tab-content {
+      background: var(--white);
+      padding: 64px 48px;
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .tab-content.active {
+      display: grid;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-features {
+      list-style: none;
+    }
+
+    .tab-features li {
+      margin-bottom: 12px;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .tab-features li:before {
+      content: "██";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    .service-visual {
+      width: 100%;
+      max-width: 400px;
+      height: 300px;
+      background: linear-gradient(135deg, var(--accent), #ff8c42);
+      border-radius: 4px;
+    }
+
+    /* Pricing */
+    .pricing {
+      background: var(--white);
+      padding: 80px 48px;
+      text-align: center;
+    }
+
+    .pricing h2 {
+      margin-bottom: 16px;
+    }
+
+    .pricing-subtitle {
+      font-size: 20px;
+      color: var(--primary);
+      margin-bottom: 64px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid #ddd;
+      padding: 40px;
+      text-align: left;
+      border-radius: 4px;
+      min-height: 420px;
+      transition: all 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .pricing-card.featured {
+      border: 3px solid var(--accent);
+      box-shadow: 0 12px 24px rgba(255, 94, 0, 0.15);
+      position: relative;
+      transform: scale(1.02);
+    }
+
+    .badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: var(--white);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 4px;
+    }
+
+    .pricing-name {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pricing-subtitle-card {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 24px;
+    }
+
+    .pricing-price {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .pricing-descriptor {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      margin-bottom: 16px;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .pricing-features li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .pricing-card button {
+      width: 100%;
+    }
+
+    .pricing-card.featured button {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .pricing-card:not(.featured) button {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: var(--light-gray);
+      padding: 80px 48px;
+      text-align: center;
+    }
+
+    .testimonials h2 {
+      margin-bottom: 64px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      padding: 40px;
+      border-top: 3px solid var(--accent);
+      border-radius: 4px;
+      text-align: left;
+      min-height: 320px;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeInSlide 0.6s ease-out forwards;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .quote-icon {
+      font-size: 64px;
+      color: var(--accent);
+      opacity: 0.3;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-text {
+      font-size: 18px;
+      margin-bottom: 32px;
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    .author-name {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .author-title {
+      font-size: 14px;
+      color: #999;
+    }
+
+    /* FAQ */
+    .faq {
+      background: var(--white);
+      padding: 80px 48px;
+      text-align: center;
+    }
+
+    .faq h2 {
+      margin-bottom: 64px;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--light-gray);
+      border: 1px solid #ddd;
+      margin-bottom: 16px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 18px;
+      background: var(--light-gray);
+      transition: background 0.2s ease;
+    }
+
+    .faq-question:hover {
+      background: #e8e8e8;
+    }
+
+    .faq-chevron {
+      color: var(--accent);
+      font-size: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 20px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+      padding: 16px 20px 20px 20px;
+    }
+
+    .faq-answer p {
+      font-size: 16px;
+      color: var(--primary);
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: var(--white);
+      padding: 64px 48px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-col h3 {
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--light-gray);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent);
+    }
+
+    .footer-divider {
+      border-top: 1px solid #555;
+      margin-top: 48px;
+      margin-bottom: 24px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--light-gray);
+    }
+
+    .footer-bottom a {
+      color: var(--light-gray);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--accent);
+    }
+
+    /* Animations */
+    @keyframes slideUpFade {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 1023px) {
+      header {
+        padding: 0 24px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 64px 24px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .logo-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tab-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 479px) {
+      h1 { font-size: 32px; }
+      h2 { font-size: 28px; }
+      h3 { font-size: 20px; }
+      p { font-size: 16px; }
+
+      header {
+        padding: 0 12px;
+      }
+
+      .hero {
+        padding: 48px 12px;
+      }
+
+      .logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tab-bar {
+        flex-wrap: wrap;
+      }
+
+      .tab {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+      }
+
+      button, .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">Lavo<span class="logo-accent">.</span></div>
+    <nav id="nav">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Automation, Websites & Growth Marketing for Small Business</h1>
+      <p>Stop wasting time on manual processes. We automate what's holding you back.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary">See How We Work</button>
+        <button class="btn btn-secondary">Learn More</button>
+      </div>
+    </div>
+    <div class="hero-visual"></div>
+  </section>
+
+  <!-- Client Logos -->
+  <section class="logos-section">
+    <h2>Trusted by growing businesses</h2>
+    <div class="logo-grid">
+      <div class="logo-item">TechFlow</div>
+      <div class="logo-item">ServicePro</div>
+      <div class="logo-item">GrowthCo</div>
+      <div class="logo-item">DataWorks</div>
+      <div class="logo-item">CloudFirst</div>
+      <div class="logo-item">NextScale</div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-number">01</div>
+        <h3>Fast Implementation</h3>
+        <p>Deploy in weeks, not months. We handle the heavy lifting so you can start seeing results immediately.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-number">02</div>
+        <h3>Real ROI</h3>
+        <p>40-60% time savings. We measure everything and prove the impact. Not vague promises—actual numbers.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-number">03</div>
+        <h3>Custom Built</h3>
+        <p>No generic templates. Every solution is designed specifically for your business, your workflows, your goals.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-number">04</div>
+        <h3>You Own It</h3>
+        <p>Full access, zero vendor lock-in. You control your systems completely. We train your team for independence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <h2>Our Services</h2>
+    <div class="tab-bar">
+      <button class="tab active" data-tab="0">Workflow Automation</button>
+      <button class="tab" data-tab="1">Website Design</button>
+      <button class="tab" data-tab="2">Growth Marketing</button>
+    </div>
+    <div class="tab-content active">
+      <div>
+        <h3>Workflow Automation</h3>
+        <p>We audit your processes, identify bottlenecks, and build automations that stick. Our systems integrate with your existing tools, no forced migrations.</p>
+        <ul class="tab-features">
+          <li>Process mapping & analysis</li>
+          <li>Custom automation builds</li>
+          <li>Tool integration & setup</li>
+          <li>Team training & handoff</li>
+        </ul>
+      </div>
+      <div class="service-visual"></div>
+    </div>
+    <div class="tab-content">
+      <div>
+        <h3>Website Design</h3>
+        <p>Modern websites designed to convert. Not templates. Built from the ground up for your business with lead generation and sales in mind.</p>
+        <ul class="tab-features">
+          <li>Lead-focused design</li>
+          <li>Mobile-first responsive</li>
+          <li>SEO foundation built in</li>
+          <li>CMS for easy updates</li>
+        </ul>
+      </div>
+      <div class="service-visual"></div>
+    </div>
+    <div class="tab-content">
+      <div>
+        <h3>Growth Marketing</h3>
+        <p>Organic content and paid campaigns that attract qualified leads. We handle strategy, creation, and ongoing optimization.</p>
+        <ul class="tab-features">
+          <li>Content strategy & calendar</li>
+          <li>Email sequence automation</li>
+          <li>Paid ad setup & management</li>
+          <li>Analytics & reporting</li>
+        </ul>
+      </div>
+      <div class="service-visual"></div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <h2>Simple, Transparent Pricing</h2>
+    <p class="pricing-subtitle">Start small, scale up. No long-term contracts.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-name">Starter</div>
+        <div class="pricing-subtitle-card">For quick wins</div>
+        <div class="pricing-price">$3,000</div>
+        <div class="pricing-descriptor">one-time investment</div>
+        <ul class="pricing-features">
+          <li>Site audit & recommendations</li>
+          <li>1 workflow automation</li>
+          <li>Integration setup</li>
+          <li>Basic training</li>
+        </ul>
+        <button class="btn">Get Started</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="badge">Most Popular</div>
+        <div class="pricing-name">Growth</div>
+        <div class="pricing-subtitle-card">Most popular</div>
+        <div class="pricing-price">$8,000</div>
+        <div class="pricing-descriptor">one-time investment</div>
+        <ul class="pricing-features">
+          <li>2-3 workflow automations</li>
+          <li>Custom website OR marketing setup</li>
+          <li>Full integration & training</li>
+          <li>30-day optimization</li>
+        </ul>
+        <button class="btn">Schedule Call</button>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-name">Enterprise</div>
+        <div class="pricing-subtitle-card">Full solutions</div>
+        <div class="pricing-price">Custom</div>
+        <div class="pricing-descriptor">tailored to your needs</div>
+        <ul class="pricing-features">
+          <li>Everything included</li>
+          <li>Custom scope & timeline</li>
+          <li>Dedicated support</li>
+          <li>Ongoing optimization</li>
+        </ul>
+        <button class="btn">Contact Us</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <p class="testimonial-text">Lavo didn't just build us a website, they automated our entire lead pipeline. We went from 10 hours of manual work per week to 2. That's not an exaggeration.</p>
+        <div class="author-name">Sarah Chen</div>
+        <div class="author-title">Marketing Director @ TechFlow</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <p class="testimonial-text">Working with Lavo was different. They actually understood our business before proposing solutions. And they stayed with us through implementation. No hand-off, no excuses.</p>
+        <div class="author-name">Marcus Rodriguez</div>
+        <div class="author-title">Operations Lead @ ServicePro</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <p class="testimonial-text">We went from drowning in manual processes to having systems that scale. Lavo showed us what was actually possible with the right approach to automation.</p>
+        <div class="author-name">Jennifer Park</div>
+        <div class="author-title">Owner @ GrowthCo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What does implementation look like?</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>We start with a full audit of your current processes, identify automation opportunities, then build and deploy the solution. Most workflows go live in 2-4 weeks. You're involved every step—no surprises, no handoff.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Do you integrate with our existing tools?</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes. We work with whatever you're already using—HubSpot, Zapier, Make, custom databases, your ERP, you name it. No forced tech stack changes. We integrate with what you have.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What kind of results should we expect?</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Our clients typically see 40-60% time savings in the processes we automate, plus measurable ROI within 60-90 days. We track and report on everything. No vanity metrics—just real impact.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How long are you involved after launch?</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>We don't hand-off and disappear. We include team training and post-launch optimization in every project. You own the system fully, but we're here to ensure adoption and success.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What's the price range for custom work?</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Starter packages begin at $3K. Growth packages at $8K. For larger automation or full-stack builds, we work with you on custom pricing based on scope and timeline.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can you work with our current team?</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p>Absolutely. We train your internal team so they can maintain and evolve the systems. Our goal is to make you self-sufficient, not dependent on us. Knowledge transfer is built into every project.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Lavo</h3>
+        <p style="color: var(--light-gray); font-size: 16px;">Automation, websites & growth marketing for small business.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Services</h3>
+        <a href="#services">Workflow Automation</a>
+        <a href="#services">Website Design</a>
+        <a href="#services">Growth Marketing</a>
+        <a href="#services">Custom Integrations</a>
+      </div>
+      <div class="footer-col">
+        <h3>Company</h3>
+        <a href="#home">About</a>
+        <a href="#home">Blog</a>
+        <a href="#home">Contact</a>
+        <a href="#home">Privacy</a>
+      </div>
+      <div class="footer-col">
+        <h3>Let's Talk</h3>
+        <a href="mailto:hello@lavogrowth.com">hello@lavogrowth.com</a>
+        <div style="margin-top: 16px; display: flex; gap: 16px;">
+          <a href="#" style="display: inline-block; margin: 0; color: var(--accent);">LinkedIn</a>
+          <a href="#" style="display: inline-block; margin: 0; color: var(--accent);">Twitter</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <div>© 2026 Lavo. All rights reserved.</div>
+      <div>
+        <a href="#home">Terms</a> ·
+        <a href="#home">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab').forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelectorAll('.tab-content')[index].classList.add('active');
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        item.classList.toggle('open');
+      });
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInSlide 0.6s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.logo-item, .testimonial-card, .feature-card').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Hamburger menu (stub for mobile)
+    document.getElementById('hamburger').addEventListener('click', () => {
+      console.log('Mobile menu clicked');
+    });
+  </script>
+</body>
+</html>
