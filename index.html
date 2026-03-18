@@ -6,30 +6,43 @@
     <title>LAVO - Marketing + Automation for Business Growth</title>
     <meta name="description" content="LAVO builds custom marketing and automation systems that generate leads, convert prospects, and scale your business. Lead generation, marketing automation, CRM integration, and go-to-market strategy.">
     <meta name="keywords" content="marketing automation, lead generation, CRM integration, go-to-market strategy, business growth, workflow automation">
-    
+
     <style>
         /* ------------------- */
         /* --- RESET & SETUP --- */
         /* ------------------- */
         :root {
             --bg-dark: #080A14;
+            --bg-secondary: #13182B;
             --primary-blue-start: #0B74C4;
             --primary-blue-end: #2A9CF3;
             --accent-orange-start: #DE6800;
             --accent-orange-end: #FF9437;
-            --text-light: #E0E1E5;
-            --text-medium: #9CA3AF;
+            --text-light: #F8FBFE;
+            --text-medium: #858893;
+            --text-muted: #BFC1C9;
+            --text-dark: #111627;
+            --glass-light: rgba(255, 255, 255, 0.10);
+            --glass-lighter: rgba(255, 255, 255, 0.05);
+            --glass-border: #0E1220;
 
             --font-family: 'Raleway', 'Helvetica Neue', 'Arial', sans-serif;
-            --h1-size: clamp(2.5rem, 5vw + 1rem, 3rem);
-            --h2-size: clamp(1.8rem, 4vw + 0.5rem, 2.25rem);
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --h1-size: clamp(2.5rem, 5vw, 5rem);
+            --h2-size: clamp(2rem, 4vw, 4rem);
+            --h3-size: clamp(1.5rem, 3vw, 3rem);
             --body-size: 1rem;
 
-            --section-margin: 64px;
+            --section-padding: 112px;
+            --section-padding-mobile: 64px;
+            --card-padding: 48px;
+            --card-padding-mobile: 24px;
             --padding: 24px;
-            
-            --border-radius: 12px;
+
+            --border-radius: 16px;
+            --border-radius-pill: 99px;
             --transition-speed: 0.3s;
+            --container-max: 1440px;
         }
 
         *, *::before, *::after {
@@ -45,7 +58,7 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
-            font-family: var(--font-family);
+            font-family: var(--font-body);
             font-size: var(--body-size);
             line-height: 1.6;
             overflow-x: hidden;
@@ -53,19 +66,43 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Grid texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
         /* ------------------- */
         /* --- UTILITIES --- */
         /* ------------------- */
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: var(--container-max);
             margin: 0 auto;
             padding: 0 var(--padding);
         }
+
         .section {
-            padding: var(--section-margin) 0;
+            padding: var(--section-padding) 0;
             position: relative;
+            z-index: 2;
         }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: var(--section-padding-mobile) 0;
+            }
+        }
+
         .sr-only {
             position: absolute;
             width: 1px;
@@ -77,6 +114,7 @@
             white-space: nowrap;
             border-width: 0;
         }
+
         .gradient-text {
             background: linear-gradient(90deg, var(--primary-blue-end), var(--primary-blue-start));
             -webkit-background-clip: text;
@@ -85,19 +123,68 @@
             text-fill-color: transparent;
         }
 
+        .eyebrow {
+            display: inline-block;
+            background: var(--glass-light);
+            border-radius: var(--border-radius-pill);
+            padding: 8px 16px;
+            font-family: var(--font-family);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: capitalize;
+            margin-bottom: 24px;
+        }
+
         /* ------------------- */
-        /* --- TYPOGRAPHY & BUTTON --- */
+        /* --- TYPOGRAPHY --- */
         /* ------------------- */
-        h1, h2, h3 {
-            font-weight: 700;
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-family);
+            font-weight: 500;
             line-height: 1.2;
             letter-spacing: -0.02em;
+            color: var(--text-light);
         }
-        h1 { font-size: var(--h1-size); }
-        h2 { font-size: var(--h2-size); text-align: center; margin-bottom: 48px; }
-        h3 { font-size: 1.25rem; margin-bottom: 12px; }
-        p { color: var(--text-medium); max-width: 600px; }
-        
+
+        h1 {
+            font-size: var(--h1-size);
+            letter-spacing: -2px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: var(--h2-size);
+            text-align: center;
+            margin-bottom: 48px;
+            letter-spacing: -1px;
+        }
+
+        h3 {
+            font-size: var(--h3-size);
+            margin-bottom: 16px;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--text-medium);
+            font-family: var(--font-body);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            text-align: center;
+            margin: -24px auto 48px;
+            max-width: 700px;
+        }
+
+        /* ------------------- */
+        /* --- BUTTONS --- */
+        /* ------------------- */
         .btn {
             display: inline-block;
             padding: 12px 24px;
@@ -105,24 +192,36 @@
             font-weight: 600;
             text-decoration: none;
             text-align: center;
-            border: none;
+            border: 2px solid;
             cursor: pointer;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            font-family: var(--font-family);
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-speed) ease;
         }
+
         .btn-primary {
-            background: linear-gradient(90deg, var(--primary-blue-start), var(--primary-blue-end));
-            color: white;
+            background: var(--text-light);
+            color: var(--text-dark);
+            border-color: var(--text-light);
         }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+        }
+
         .btn-accent {
             background: linear-gradient(90deg, var(--accent-orange-start), var(--accent-orange-end));
             color: white;
+            border-color: var(--accent-orange-end);
         }
-        .btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px -5px rgba(42, 156, 243, 0.3);
-        }
+
         .btn-accent:hover {
-            box-shadow: 0 10px 20px -5px rgba(255, 148, 55, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(255, 148, 55, 0.2);
         }
 
         /* ------------------- */
@@ -134,39 +233,52 @@
             width: 100%;
             z-index: 100;
             padding: 16px 0;
-            transition: background-color var(--transition-speed) ease, backdrop-filter var(--transition-speed) ease;
+            transition: background-color var(--transition-speed) ease;
         }
+
         .site-header.scrolled {
             background-color: rgba(8, 10, 20, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
             font-size: 1.75rem;
             font-weight: 800;
             text-decoration: none;
             color: var(--text-light);
             letter-spacing: -0.05em;
+            font-family: var(--font-family);
         }
+
         .nav-links {
             display: none;
             list-style: none;
             gap: 32px;
         }
+
         .nav-links a {
             color: var(--text-medium);
             text-decoration: none;
             font-weight: 500;
             transition: color var(--transition-speed) ease;
         }
+
         .nav-links a:hover {
             color: var(--text-light);
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
         }
 
         /* ------------------- */
@@ -179,9 +291,10 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            z-index: -1;
+            z-index: 0;
             pointer-events: none;
         }
+
         .aurora-blob {
             position: absolute;
             width: 800px;
@@ -189,7 +302,7 @@
             background: radial-gradient(circle at center, var(--primary-blue-start) 0%, rgba(11, 116, 196, 0) 60%);
             border-radius: 50%;
             filter: blur(120px);
-            opacity: 0.3;
+            opacity: 0.25;
             will-change: transform;
             transition: transform 1s ease-out;
         }
@@ -204,48 +317,115 @@
             text-align: center;
             min-height: 80vh;
         }
+
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
         }
+
         .hero-content h1 {
             margin-bottom: 24px;
         }
+
         .hero-content p {
             font-size: 1.125rem;
             margin: 0 auto 32px;
-            opacity: 0.9;
+            color: var(--text-medium);
         }
 
         /* ------------------- */
         /* --- STATS SECTION --- */
         /* ------------------- */
         #stats {
-            padding: var(--section-margin) 0;
+            background: var(--bg-secondary);
         }
+
         .stats-grid {
             display: grid;
-            gap: 24px;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
             text-align: center;
         }
-        .stat-item {
-            padding: 24px;
+
+        .stat-card {
+            padding: var(--card-padding);
+            background: var(--glass-light);
+            border-radius: var(--border-radius);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
         }
+
+        @for $i from 1 through 4 {
+            .stat-card:nth-child(#{$i}) {
+                animation-delay: #{$i * 0.1}s;
+            }
+        }
+
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            background: linear-gradient(90deg, var(--accent-orange-end), var(--primary-blue-end));
+            background: linear-gradient(135deg, var(--primary-blue-end), var(--accent-orange-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-fill-color: transparent;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            font-family: var(--font-family);
         }
+
         .stat-label {
+            color: var(--text-light);
             font-size: 0.95rem;
-            color: var(--text-medium);
-            font-weight: 500;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ------------------- */
+        /* --- PARTNERS SECTION --- */
+        /* ------------------- */
+        #partners {
+            text-align: center;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .partner-logo {
+            background: var(--glass-light);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            font-weight: 600;
+            color: var(--text-medium);
+            transition: all var(--transition-speed) ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .partner-logo:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-light);
+        }
+
+        .partner-logo:nth-child(1) { animation-delay: 0.1s; }
+        .partner-logo:nth-child(2) { animation-delay: 0.15s; }
+        .partner-logo:nth-child(3) { animation-delay: 0.2s; }
+        .partner-logo:nth-child(4) { animation-delay: 0.25s; }
+        .partner-logo:nth-child(5) { animation-delay: 0.3s; }
+        .partner-logo:nth-child(6) { animation-delay: 0.35s; }
 
         /* ------------------- */
         /* --- SERVICES SECTION --- */
@@ -255,28 +435,31 @@
             gap: 24px;
             grid-template-columns: 1fr;
         }
+
         .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-light);
             border-radius: var(--border-radius);
-            padding: 32px;
+            padding: var(--card-padding);
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            transition: all var(--transition-speed) ease;
             opacity: 0;
             transform: translateY(30px);
             will-change: opacity, transform;
         }
+
         .service-card.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
+
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
+
         .service-icon {
             margin-bottom: 24px;
             width: 48px;
@@ -284,110 +467,193 @@
             stroke-width: 1.5;
             color: var(--primary-blue-end);
         }
+
         @keyframes pulse-icon {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
+
         @keyframes spin-icon {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+
         .icon-lead-capture { animation: pulse-icon 3s ease-in-out infinite 0.5s; }
         .icon-workflow { animation: spin-icon 10s linear infinite reverse; }
-        .icon-website path:nth-child(2) { animation: pulse-icon 4s ease-in-out infinite 1s; }
-        .icon-optimization polyline { animation: pulse-icon 3.5s ease-in-out infinite; }
+        .icon-website { animation: pulse-icon 4s ease-in-out infinite 1s; }
+        .icon-optimization { animation: pulse-icon 3.5s ease-in-out infinite; }
+
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
         /* ------------------- */
         /* --- WHY LAVO SECTION --- */
         /* ------------------- */
-        #why-lavo {
-            background-color: rgba(13, 18, 33, 0.5);
-        }
-        .why-grid {
+        #why-lavo .section-content {
             display: grid;
-            gap: 24px;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
         }
+
         .why-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-light);
             border-radius: var(--border-radius);
-            padding: 32px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            padding: var(--card-padding);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
         }
-        .why-card h3 {
-            color: var(--primary-blue-end);
+
+        .why-card:nth-child(1) { animation-delay: 0.1s; }
+        .why-card:nth-child(2) { animation-delay: 0.2s; }
+        .why-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .why-card h4 {
+            color: var(--text-light);
             margin-bottom: 16px;
         }
 
-        /* ------------------- */
-        /* --- TEAM SECTION --- */
-        /* ------------------- */
-        #team {
-            text-align: center;
-        }
-        .team-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .team-content h3 {
-            text-align: center;
-            color: var(--primary-blue-end);
-            font-size: 1.5rem;
-            margin-bottom: 24px;
-            margin-top: 0;
-        }
-        .team-content p {
-            margin: 16px auto;
-            line-height: 1.8;
+        .why-card p {
+            color: var(--text-medium);
+            margin: 0;
         }
 
         /* ------------------- */
         /* --- RESULTS SECTION --- */
         /* ------------------- */
-        .results-grid {
+        #results .section-content {
             display: grid;
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .result-card {
+            background: var(--glass-light);
+            border-radius: var(--border-radius);
+            padding: var(--card-padding);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+            border-left: 4px solid var(--primary-blue-end);
+        }
+
+        .result-card:nth-child(1) { animation-delay: 0.1s; border-left-color: var(--primary-blue-end); }
+        .result-card:nth-child(2) { animation-delay: 0.2s; border-left-color: var(--accent-orange-end); }
+        .result-card:nth-child(3) { animation-delay: 0.3s; border-left-color: var(--primary-blue-end); }
+
+        .result-label {
+            font-size: 0.875rem;
+            color: var(--primary-blue-end);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .result-stat {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            font-family: var(--font-family);
+        }
+
+        .result-card p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* ------------------- */
+        /* --- TESTIMONIALS SECTION --- */
+        /* ------------------- */
+        .testimonials-grid {
+            display: grid;
+            gap: 32px;
             grid-template-columns: 1fr;
         }
-        .result-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        .testimonial-card {
+            background: var(--glass-light);
             border-radius: var(--border-radius);
-            padding: 32px;
+            padding: var(--card-padding);
             position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             opacity: 0;
-            transform: translateY(30px);
-            will-change: opacity, transform;
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            animation: fadeInUp 0.6s ease-out forwards;
         }
-        .result-card.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .testimonial-quote {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 24px;
+            position: relative;
+            padding-left: 32px;
         }
-        .result-card h4 {
-            color: var(--accent-orange-end);
-            font-size: 1rem;
-            margin-bottom: 12px;
+
+        .testimonial-quote::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -8px;
+            font-size: 4rem;
+            color: var(--primary-blue-end);
+            opacity: 0.3;
         }
-        .result-card p {
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary-blue-start), var(--accent-orange-start));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .testimonial-meta h5 {
+            margin: 0 0 4px 0;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-meta p {
+            font-size: 0.85rem;
+            color: var(--text-medium);
             margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* ------------------- */
         /* --- PROCESS SECTION --- */
         /* ------------------- */
         #process { overflow: hidden; }
+
         .process-layout {
             display: grid;
             grid-template-columns: 1fr;
             gap: 48px;
             align-items: flex-start;
         }
+
         .process-visual {
             position: sticky;
             top: 150px;
@@ -396,12 +662,14 @@
             align-items: center;
             justify-content: center;
         }
+
         #process-svg {
             width: 100%;
             max-width: 400px;
             height: auto;
             overflow: visible;
         }
+
         #process-path {
             stroke-width: 4;
             stroke-linecap: round;
@@ -410,101 +678,168 @@
             stroke: url(#svg-gradient);
             transition: d 0.8s cubic-bezier(0.65, 0, 0.35, 1);
         }
+
         .process-steps {
             position: relative;
             z-index: 1;
         }
+
         .process-step {
-            padding: 24px;
-            margin-bottom: 64px;
+            padding: 32px;
+            margin-bottom: 48px;
             border-radius: var(--border-radius);
-            border: 1px solid transparent;
-            transition: background-color 0.5s ease, border-color 0.5s ease;
+            border-left: 4px solid transparent;
+            transition: all 0.5s ease;
         }
+
         .process-step.is-active {
             background-color: rgba(42, 156, 243, 0.05);
-            border-color: rgba(42, 156, 243, 0.2);
+            border-left-color: var(--primary-blue-end);
         }
+
         .process-step span {
             font-size: 0.875rem;
             color: var(--primary-blue-end);
             font-weight: 600;
             margin-bottom: 8px;
             display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+
         .process-step h3 {
             color: var(--text-light);
+            margin-bottom: 12px;
         }
-        @keyframes flow {
-            to { stroke-dashoffset: -100; }
+
+        .process-step p {
+            color: var(--text-medium);
+            margin: 0;
         }
-        .path-flowing {
-            stroke-dasharray: 50 10;
-            animation: flow 2s linear infinite;
+
+        @media (min-width: 1200px) {
+            .process-layout {
+                grid-template-columns: 1fr 1fr;
+            }
         }
-        @keyframes pulse-path {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; transform: scale(1.02); }
+
+        /* ------------------- */
+        /* --- TEAM SECTION --- */
+        /* ------------------- */
+        #team .section-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 64px;
+            align-items: center;
         }
-        .path-pulsing {
-            animation: pulse-path 1.5s ease-in-out infinite;
-            transform-origin: center;
+
+        .team-copy p {
+            font-size: 1.125rem;
+            margin-bottom: 24px;
+            line-height: 1.8;
         }
-        
+
+        .team-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .team-stat {
+            background: var(--glass-light);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .team-stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue-end);
+            margin-bottom: 8px;
+            font-family: var(--font-family);
+        }
+
+        .team-stat-label {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+        }
+
+        @media (min-width: 768px) {
+            #team .section-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .team-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         /* ------------------- */
         /* --- FAQ SECTION --- */
         /* ------------------- */
-        #faq {
-            background-color: rgba(13, 18, 33, 0.5);
-        }
-        .faq-container {
-            max-width: 700px;
+        #faq .section-content {
+            max-width: 800px;
             margin: 0 auto;
         }
+
         .faq-item {
-            margin-bottom: 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 24px;
+            background: var(--glass-light);
+            border-radius: var(--border-radius);
+            margin-bottom: 16px;
+            overflow: hidden;
         }
-        .faq-item:last-child {
-            border-bottom: none;
-        }
+
         .faq-question {
+            padding: var(--card-padding);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 0;
-            font-weight: 600;
-            color: var(--text-light);
-            user-select: none;
-        }
-        .faq-question:hover {
-            color: var(--primary-blue-end);
-        }
-        .faq-toggle {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-        .faq-toggle.open {
-            transform: rotate(180deg);
-        }
-        .faq-answer {
-            display: none;
-            color: var(--text-medium);
-            line-height: 1.8;
-            max-width: none;
-        }
-        .faq-answer.open {
-            display: block;
+            transition: background var(--transition-speed) ease;
         }
 
-        /* ------------------- */
-        /* --- CTA SECTION --- */
-        /* ------------------- */
-        #cta { text-align: center; }
-        .cta-content p {
-            margin: 16px auto 32px;
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .faq-question h4 {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-blue-end);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding: var(--card-padding);
+            margin: 0;
+            color: var(--text-medium);
         }
 
         /* ------------------- */
@@ -512,80 +847,65 @@
         /* ------------------- */
         .site-footer {
             background-color: #04060c;
-            padding: 48px 0;
-            text-align: center;
+            padding: 64px 0 32px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .footer-container {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
         }
-        .footer-logo {
+
+        @media (min-width: 768px) {
+            .footer-container {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand h3 {
             font-size: 1.5rem;
-            font-weight: 800;
-            text-decoration: none;
-            color: var(--text-light);
+            margin-bottom: 8px;
         }
+
+        .footer-brand p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+        }
+
         .footer-links {
             list-style: none;
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-            justify-content: center;
         }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
         .footer-links a {
             color: var(--text-medium);
             text-decoration: none;
             transition: color var(--transition-speed) ease;
         }
+
         .footer-links a:hover {
             color: var(--text-light);
         }
-        .copyright {
-            font-size: 0.875rem;
-            color: var(--text-medium);
-        }
-        
-        /* ------------------- */
-        /* --- RESPONSIVE --- */
-        /* ------------------- */
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-            }
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .why-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .results-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .footer-container {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-        }
-        
-        @media (min-width: 1200px) {
-            .container {
-                padding: 0;
-            }
-            .process-layout {
-                grid-template-columns: 1fr 1fr;
-                gap: 64px;
-            }
+
+        .footer-section h5 {
+            color: var(--text-light);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        @media (min-width: 1600px) {
-            :root {
-                --h1-size: 3.5rem;
-                --h2-size: 2.75rem;
-                --body-size: 1.125rem;
-            }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 32px;
+            text-align: center;
+            color: var(--text-medium);
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -601,11 +921,11 @@
             <nav>
                 <ul class="nav-links">
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#process">Process</a></li>
-                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#why-lavo">Why Lavo</a></li>
+                    <li><a href="#team">Team</a></li>
                 </ul>
             </nav>
-            <a href="#cta" class="btn btn-primary">Get Free Quote</a>
+            <a href="#cta" class="btn btn-primary">GET FREE AUDIT</a>
         </div>
     </header>
 
@@ -615,31 +935,47 @@
         <section id="hero" class="section">
             <div class="container hero-content">
                 <h1 class="gradient-text">More Leads. More Revenue. Built to Scale.</h1>
-                <p>We build the marketing and automation engine that captures leads, converts prospects, and grows your business without adding headcount.</p>
-                <a href="#cta" class="btn btn-accent">Get Your Free Automation Audit</a>
+                <p>We build the marketing and automation engine that captures leads, converts prospects, and grows your business — without adding headcount.</p>
+                <a href="#cta" class="btn btn-accent">GET YOUR FREE AUTOMATION AUDIT</a>
             </div>
         </section>
 
         <!-- STATS SECTION -->
-        <section id="stats">
+        <section id="stats" class="section">
             <div class="container">
                 <div class="stats-grid">
-                    <div class="stat-item">
+                    <div class="stat-card">
                         <div class="stat-number">2M+</div>
-                        <div class="stat-label">Organic Impressions/Month<br>(One Client, Google Alone)</div>
+                        <div class="stat-label">Organic Impressions Generated</div>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-card">
                         <div class="stat-number">3x</div>
-                        <div class="stat-label">Average Sales Increase<br>for Go-to-Market Clients</div>
+                        <div class="stat-label">Average Revenue Growth</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100s</div>
-                        <div class="stat-label">Custom Workflows Built</div>
+                    <div class="stat-card">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Workflows Built</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">$M+</div>
-                        <div class="stat-label">Saved in Operational Costs</div>
+                    <div class="stat-card">
+                        <div class="stat-number">$1M+</div>
+                        <div class="stat-label">Manual Costs Saved</div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTNERS SECTION -->
+        <section id="partners" class="section">
+            <div class="container">
+                <div class="eyebrow">Trusted by growing businesses</div>
+                <h2>Built for All Industries</h2>
+                <div class="partners-grid">
+                    <div class="partner-logo">Industrial Mfg</div>
+                    <div class="partner-logo">B2B Services</div>
+                    <div class="partner-logo">Professional Services</div>
+                    <div class="partner-logo">Regional Services</div>
+                    <div class="partner-logo">Construction</div>
+                    <div class="partner-logo">Technology</div>
                 </div>
             </div>
         </section>
@@ -647,27 +983,28 @@
         <!-- SERVICES SECTION -->
         <section id="services" class="section">
             <div class="container">
-                <h2>Our Services</h2>
+                <div class="eyebrow">Services</div>
+                <h2>Built for Growth at Every Stage</h2>
                 <div class="services-grid">
-                    <div class="service-card reveal-card" style="transition-delay: 0.1s;">
+                    <div class="service-card reveal-card">
                         <svg class="service-icon icon-lead-capture" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7.5" r="4.5"></circle><line x1="18" y1="12" x2="23" y2="17"></line><polyline points="23 12 23 17 18 17"></polyline></svg>
                         <h3>Lead Generation & Marketing</h3>
-                        <p>We build the full marketing engine: SEO, content, paid, and outreach that generates qualified leads on autopilot.</p>
+                        <p>We build the full marketing engine — SEO, content, paid channels, and outreach. Generate qualified leads on autopilot.</p>
                     </div>
-                    <div class="service-card reveal-card" style="transition-delay: 0.2s;">
+                    <div class="service-card reveal-card">
                         <svg class="service-icon icon-workflow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
                         <h3>Sales Workflow Automation</h3>
-                        <p>We automate your sales follow-up, pipeline management, and outreach so your team closes more without doing more.</p>
+                        <p>We automate follow-up, pipeline management, and outreach so your team closes more without doing more.</p>
                     </div>
-                    <div class="service-card reveal-card" style="transition-delay: 0.3s;">
+                    <div class="service-card reveal-card">
                         <svg class="service-icon icon-website" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                         <h3>Website + CRM Integration</h3>
-                        <p>Your website becomes a lead machine, directly feeding your CRM with real-time data and triggering automated follow-up instantly.</p>
+                        <p>Your website becomes a lead machine — directly feeding your CRM with real-time data and instant automated follow-up.</p>
                     </div>
-                    <div class="service-card reveal-card" style="transition-delay: 0.4s;">
+                    <div class="service-card reveal-card">
                         <svg class="service-icon icon-optimization" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
                         <h3>Go-to-Market Strategy</h3>
-                        <p>We build the full GTM system from scratch: positioning, channels, messaging, and the automation to run it all.</p>
+                        <p>We build the full GTM from scratch — positioning, channels, messaging, and the automation to run it all.</p>
                     </div>
                 </div>
             </div>
@@ -676,51 +1013,85 @@
         <!-- WHY LAVO SECTION -->
         <section id="why-lavo" class="section">
             <div class="container">
-                <h2>Why LAVO</h2>
-                <div class="why-grid">
+                <div class="eyebrow">Why Lavo</div>
+                <h2>A Different Kind of Agency</h2>
+                <div class="section-content">
                     <div class="why-card">
-                        <h3>Custom, Not Cookie-Cutter</h3>
-                        <p>Every system we build is designed around your business, your tools, and your goals. No templates. No one-size-fits-all. No compromises.</p>
+                        <h4>Custom, Not Cookie-Cutter</h4>
+                        <p>Every system we build is designed around your business, your tools, and your goals. No templates. No "good enough."</p>
                     </div>
                     <div class="why-card">
-                        <h3>Marketing + Automation Together</h3>
-                        <p>Most agencies do one or the other. We connect both so your marketing drives leads and your automation converts them at scale.</p>
+                        <h4>Marketing + Automation, Together</h4>
+                        <p>Most agencies do one or the other. We connect both — so your marketing drives leads and your automation converts them.</p>
                     </div>
                     <div class="why-card">
-                        <h3>We've Done This Before</h3>
-                        <p>Our team has spent years inside complex B2B businesses, building the exact systems we now offer. We know what works at scale.</p>
+                        <h4>We've Done This Before</h4>
+                        <p>Years inside industrial B2B and manufacturing businesses building the exact systems we now offer as a service.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- TEAM SECTION -->
-        <section id="team" class="section">
-            <div class="container team-content">
-                <h3>Our Team</h3>
-                <p>50+ years of combined experience across sales, marketing, and operations.</p>
-                <p>We've built automation systems for industrial manufacturers, audio companies, mobile service businesses, and beauty industry leaders. We've created hundreds of custom workflows, helping businesses save millions in operational costs.</p>
-                <p>Our founder spent over a decade building marketing and automation systems for a multi-million dollar industrial manufacturer — growing their digital presence from near zero to 2 million monthly impressions with minimal ad spend.</p>
-                <p>When we partner with you, you get our full team: strategists, engineers, and operations experts dedicated to your success.</p>
             </div>
         </section>
 
         <!-- RESULTS SECTION -->
         <section id="results" class="section">
             <div class="container">
-                <h2>Results We've Delivered</h2>
-                <div class="results-grid">
-                    <div class="result-card reveal-card">
-                        <h4>Industrial Manufacturing</h4>
-                        <p>Built a complete go-to-market engine from scratch. Result: 2M+ organic Google impressions per month with minimal ad spend, and 3x sales increase in 12 months.</p>
+                <div class="eyebrow">Results</div>
+                <h2>What We've Helped Build</h2>
+                <div class="section-content">
+                    <div class="result-card">
+                        <div class="result-label">Industrial Manufacturing</div>
+                        <div class="result-stat">2M+</div>
+                        <p>Monthly Google impressions with minimal ad spend. Built from scratch in under 12 months.</p>
                     </div>
-                    <div class="result-card reveal-card" style="transition-delay: 0.1s;">
-                        <h4>B2B Services Company</h4>
-                        <p>Redesigned their sales automation and lead nurturing system. Result: 3x sales volume in under 6 months with the same-sized team.</p>
+                    <div class="result-card">
+                        <div class="result-label">B2B Services</div>
+                        <div class="result-stat">3x</div>
+                        <p>Sales volume increase in 6 months. Full automation of follow-up, pipeline tracking, and outreach.</p>
                     </div>
-                    <div class="result-card reveal-card" style="transition-delay: 0.2s;">
-                        <h4>Service Business</h4>
-                        <p>Rebuilt lead capture and CRM workflows. Result: Response time dropped from hours to minutes, pipeline visibility improved completely, and conversion rates improved 40%.</p>
+                    <div class="result-card">
+                        <div class="result-label">Regional Services</div>
+                        <div class="result-stat">Hours → Minutes</div>
+                        <p>Lead response time dropped from hours to minutes. Pipeline visibility went from zero to complete.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section id="testimonials" class="section">
+            <div class="container">
+                <div class="eyebrow">Client Stories</div>
+                <h2>Hear It From the People We Work With</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">[PLACEHOLDER TESTIMONIAL] Before Lavo, we were manually following up with every lead. Now our pipeline runs itself. We've tripled the number of deals we're working at any given time.</div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">A</div>
+                            <div class="testimonial-meta">
+                                <h5>[Client Name]</h5>
+                                <p>CEO, [Company]</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">[PLACEHOLDER TESTIMONIAL] They didn't just build us a website — they built us a sales machine. The leads started coming in within the first 60 days.</div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">B</div>
+                            <div class="testimonial-meta">
+                                <h5>[Client Name]</h5>
+                                <p>Founder, [Company]</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">[PLACEHOLDER TESTIMONIAL] I've worked with a lot of agencies. Lavo is the first one that actually understood our industry and built something that worked for our specific process.</div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">C</div>
+                            <div class="testimonial-meta">
+                                <h5>[Client Name]</h5>
+                                <p>VP of Sales, [Company]</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -729,14 +1100,15 @@
         <!-- PROCESS SECTION -->
         <section id="process" class="section">
             <div class="container">
-                <h2>How We Work</h2>
+                <div class="eyebrow">Process</div>
+                <h2>How We Do It: From Chaos to Clarity</h2>
                 <div class="process-layout">
                     <div class="process-visual">
                         <svg id="process-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
                             <defs>
                                 <linearGradient id="svg-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:var(--accent-orange-end);stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:var(--primary-blue-end);stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:#FF9437;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#2A9CF3;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <path id="process-path" d=""></path>
@@ -746,17 +1118,17 @@
                         <div class="process-step" data-step="0">
                             <span>Step 1</span>
                             <h3>Discover</h3>
-                            <p>We audit your current marketing, sales, and operations, identifying exactly where leads are falling through the cracks and what to automate first.</p>
+                            <p>We audit your current marketing, sales, and ops — identifying exactly where leads are falling through and what to automate first.</p>
                         </div>
                         <div class="process-step" data-step="1">
                             <span>Step 2</span>
                             <h3>Strategize</h3>
-                            <p>We deliver a custom roadmap: which channels to activate, which workflows to build, and what to prioritize for the fastest results.</p>
+                            <p>We deliver a custom roadmap: which channels to activate, which workflows to build, and what to prioritize for fastest results.</p>
                         </div>
                         <div class="process-step" data-step="2">
                             <span>Step 3</span>
                             <h3>Implement</h3>
-                            <p>We build everything: landing pages, automation sequences, CRM setup, integrations. You review and approve at every stage.</p>
+                            <p>We build everything — landing pages, automation sequences, CRM setup, integrations. You review and approve at every stage.</p>
                         </div>
                         <div class="process-step" data-step="3">
                             <span>Step 4</span>
@@ -768,62 +1140,102 @@
             </div>
         </section>
 
+        <!-- TEAM SECTION -->
+        <section id="team" class="section">
+            <div class="container">
+                <div class="eyebrow">Our Team</div>
+                <h2>Built by People Who've Done This</h2>
+                <div class="section-content">
+                    <div class="team-copy">
+                        <p>Our team has spent years inside complex businesses — industrial manufacturers, B2B service companies, regional operators — building the exact systems we now offer as a service. We're not marketers who learned automation. We're operators who built marketing engines to grow real businesses.</p>
+                        <p>Every system we build is informed by real experience. The challenges you're facing, we've solved before.</p>
+                    </div>
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <div class="team-stat-value">50+</div>
+                            <div class="team-stat-label">Years Combined Experience</div>
+                        </div>
+                        <div class="team-stat">
+                            <div class="team-stat-value">100+</div>
+                            <div class="team-stat-label">Workflows Deployed</div>
+                        </div>
+                        <div class="team-stat">
+                            <div class="team-stat-value">Multiple</div>
+                            <div class="team-stat-label">Industries Served</div>
+                        </div>
+                        <div class="team-stat">
+                            <div class="team-stat-value">Real</div>
+                            <div class="team-stat-label">Operators Not Just Consultants</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FAQ SECTION -->
         <section id="faq" class="section">
-            <div class="container faq-container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Do I need a big budget to get started?</span>
-                        <span class="faq-toggle">&#8594;</span>
+            <div class="container">
+                <div class="eyebrow" style="text-align: center;">FAQ</div>
+                <h2>Common Questions</h2>
+                <div class="section-content">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>What kinds of businesses do you work with?</h4>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We work with growing businesses across industries — from industrial manufacturers to B2B services, regional contractors, professional services, and more. If you're selling complex products or services and need consistent lead generation and pipeline management, we can help.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>Not at all. We work with businesses of all sizes, from startups to enterprises. We'll design a solution that fits your budget and grows with you. Most clients see ROI within the first 3-6 months.</p>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>How long does it take to see results?</h4>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Most clients see measurable results within 30-60 days. We prioritize the quick wins first while building out the longer-term strategy. Some results are immediate (improved response time, better pipeline visibility). Others build over time (increased lead volume, improved conversion rates).</p>
+                        </div>
                     </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>How long does it take to see results?</span>
-                        <span class="faq-toggle">&#8594;</span>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Do I need to already have a CRM?</h4>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Not necessarily. Many clients have a CRM that's not being used effectively. Others need a CRM implementation from scratch. We can help with either — our process includes evaluating your current tools and recommending the right setup for your specific business.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>We typically start seeing lead volume improvements within 4-6 weeks of launching your system. Full optimization takes 3-6 months as we test, learn, and refine. Your timeline depends on how complex your system is and how fast we can implement it.</p>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Is this just software setup or do you handle strategy too?</h4>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Strategy comes first. We audit your entire marketing, sales, and ops process. We identify the bottlenecks, design the system, and then implement the technology to support it. The software is just the tool — the strategy is what drives results.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Do you work with businesses that already have a CRM?</span>
-                        <span class="faq-toggle">&#8594;</span>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>How is Lavo different from hiring a marketing agency?</h4>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Traditional marketing agencies focus on ads, content, and campaigns. We focus on the entire engine — marketing AND automation AND sales systems. We're not optimizing for vanity metrics; we're optimizing for qualified leads and closed deals. And we handle the automation piece that most agencies completely miss.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>Yes. Whether you use HubSpot, Pipedrive, Salesforce, or any other CRM, we can build custom workflows and integrations around your existing system. In fact, most of our clients come to us with existing tools that just need better automation and strategy.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Is this just software setup or do you do the strategy too?</span>
-                        <span class="faq-toggle">&#8594;</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We do both. The software and automation are just the implementation. The strategy is what makes it work. We help you figure out which channels to use, how to message to your audience, where to capture leads, and how to nurture them. Then we build the system to execute that strategy automatically.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>What industries do you work with?</span>
-                        <span class="faq-toggle">&#8594;</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We've worked with industrial manufacturers, B2B services companies, audio companies, mobile service businesses, and beauty industry leaders. If you sell B2B, have complex workflows, or need to generate leads at scale, we can help.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>How is this different from hiring a marketing agency or software consultant?</span>
-                        <span class="faq-toggle">&#8594;</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Most marketing agencies focus on ads or content. Most software consultants just implement tools. We do both, and we do it as a unified system. Your marketing feeds qualified leads into your automation, which converts them at scale. It's not separate services, it's one integrated engine built for your business.</p>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>What does the free audit include?</h4>
+                            <div class="faq-toggle">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We spend time understanding your current marketing, sales, and operations processes. We identify where leads are falling through the cracks, where automation could free up time, and what the biggest opportunities are. You'll leave with specific recommendations and a clear picture of what's possible.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -831,25 +1243,43 @@
 
         <!-- CTA SECTION -->
         <section id="cta" class="section">
-            <div class="container cta-content">
-                <h2>Ready to Scale?</h2>
-                <p>Let's build the marketing and automation system that transforms your business. Get your free automation audit today.</p>
-                <a href="mailto:ops@lavo-systems.com" class="btn btn-accent">Get Your Free Automation Audit</a>
+            <div class="container" style="text-align: center;">
+                <div class="eyebrow">Ready to scale</div>
+                <h2>Stop Wasting Time on Manual Tasks</h2>
+                <p class="section-subtitle">Let's build a smarter, more efficient marketing and sales engine for your business. Get your free automation audit today.</p>
+                <a href="mailto:hello@lavo.agency" class="btn btn-accent">GET YOUR FREE AUTOMATION AUDIT</a>
             </div>
         </section>
 
     </main>
-    
+
     <footer class="site-footer">
         <div class="container footer-container">
-            <a href="#hero" class="footer-logo">LAVO</a>
-            <ul class="footer-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why-lavo">Why LAVO</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-            <p class="copyright">&copy; 2026 LAVO. All rights reserved.</p>
+            <div class="footer-brand">
+                <h3>LAVO</h3>
+                <p>Custom marketing and automation systems for growing businesses.</p>
+            </div>
+            <div class="footer-section">
+                <h5>Services</h5>
+                <ul class="footer-links">
+                    <li><a href="#services">Lead Generation</a></li>
+                    <li><a href="#services">Automation</a></li>
+                    <li><a href="#services">CRM Integration</a></li>
+                    <li><a href="#services">Go-to-Market</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Company</h5>
+                <ul class="footer-links">
+                    <li><a href="#team">About</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="mailto:hello@lavo.agency">Contact</a></li>
+                    <li><a href="mailto:hello@lavo.agency">hello@lavo.agency</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LAVO. All rights reserved.</p>
         </div>
     </footer>
 
@@ -863,7 +1293,7 @@
             { threshold: [1] }
         );
         headerObserver.observe(header);
-        
+
         // 2. AURORA MOUSE TRACKING
         const auroraBlob = document.querySelector('.aurora-blob');
         document.body.addEventListener('mousemove', (e) => {
@@ -882,30 +1312,28 @@
             });
         }, { threshold: 0.1 });
         revealElements.forEach(el => revealObserver.observe(el));
-        
+
         // 4. SVG SCROLLYTELLING
         const processSVGPath = document.getElementById('process-path');
         const processSteps = document.querySelectorAll('.process-step');
-        
+
         const svgPaths = [
             'M10,50 C20,10 30,90 40,50 C50,10 60,90 70,50 C80,10 90,90 90,50',
             'M5,50 C25,50 25,50 45,50 C65,50 65,50 75,50 C85,50 95,50 95,50',
             'M5,50 C25,50 25,50 45,50 C65,50 65,50 75,50 C85,50 95,50 95,50',
             'M5,50 C25,50 25,50 45,50 C65,50 65,50 75,50 C85,50 95,50 95,50'
         ];
-        
+
         if (processSVGPath) {
             processSVGPath.setAttribute('d', svgPaths[0]);
-        
+
             const stepObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const stepIndex = parseInt(entry.target.dataset.step);
                     if (entry.isIntersecting) {
                         processSteps.forEach(s => s.classList.remove('is-active'));
                         entry.target.classList.add('is-active');
-                        
                         processSVGPath.setAttribute('d', svgPaths[stepIndex]);
-                        
                         processSVGPath.classList.remove('path-flowing', 'path-pulsing');
                         if (stepIndex === 2) {
                             processSVGPath.classList.add('path-flowing');
@@ -914,27 +1342,25 @@
                         }
                     }
                 });
-            }, { 
+            }, {
                 rootMargin: '-50% 0px -50% 0px',
-                threshold: 0 
+                threshold: 0
             });
 
             processSteps.forEach(step => stepObserver.observe(step));
         }
 
-    });
+        // 5. FAQ ACCORDION
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
 
-    // FAQ Toggle
-    function toggleFAQ(element) {
-        const faqItem = element.parentElement;
-        const answer = faqItem.querySelector('.faq-answer');
-        const toggle = element.querySelector('.faq-toggle');
-        
-        answer.classList.toggle('open');
-        toggle.classList.toggle('open');
-    }
+    });
     </script>
 
 </body>
 </html>
-<!-- Updated at Wed Mar 18 00:07:37 CDT 2026 -->
