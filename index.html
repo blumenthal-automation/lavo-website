@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LAVO - Intelligent Business Automation</title>
-    <meta name="description" content="LAVO helps you capture every lead and automate your business with intelligent, custom-built workflows and CRM integrations. Get your free automation audit today.">
-    <meta name="keywords" content="business automation, workflow automation, crm integration, lead capture, process optimization">
+    <title>LAVO - Marketing + Automation for Business Growth</title>
+    <meta name="description" content="LAVO builds custom marketing and automation systems that generate leads, convert prospects, and scale your business. Lead generation, marketing automation, CRM integration, and go-to-market strategy.">
+    <meta name="keywords" content="marketing automation, lead generation, CRM integration, go-to-market strategy, business growth, workflow automation">
     
     <style>
         /* ------------------- */
@@ -21,9 +21,9 @@
             --text-medium: #9CA3AF;
 
             --font-family: 'Raleway', 'Helvetica Neue', 'Arial', sans-serif;
-            --h1-size: clamp(2.5rem, 5vw + 1rem, 3rem); /* 48px */
-            --h2-size: clamp(1.8rem, 4vw + 0.5rem, 2.25rem); /* 36px */
-            --body-size: 1rem; /* 16px */
+            --h1-size: clamp(2.5rem, 5vw + 1rem, 3rem);
+            --h2-size: clamp(1.8rem, 4vw + 0.5rem, 2.25rem);
+            --body-size: 1rem;
 
             --section-margin: 64px;
             --padding: 24px;
@@ -155,7 +155,7 @@
             letter-spacing: -0.05em;
         }
         .nav-links {
-            display: none; /* Mobile first */
+            display: none;
             list-style: none;
             gap: 32px;
         }
@@ -191,7 +191,7 @@
             filter: blur(120px);
             opacity: 0.3;
             will-change: transform;
-            transition: transform 1s ease-out; /* Add transition for smoothness */
+            transition: transform 1s ease-out;
         }
 
         /* ------------------- */
@@ -214,6 +214,37 @@
             font-size: 1.125rem;
             margin: 0 auto 32px;
             opacity: 0.9;
+        }
+
+        /* ------------------- */
+        /* --- STATS SECTION --- */
+        /* ------------------- */
+        #stats {
+            padding: var(--section-margin) 0;
+        }
+        .stats-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            text-align: center;
+        }
+        .stat-item {
+            padding: 24px;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--accent-orange-end), var(--primary-blue-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            font-weight: 500;
         }
 
         /* ------------------- */
@@ -253,7 +284,6 @@
             stroke-width: 1.5;
             color: var(--primary-blue-end);
         }
-        /* Icon Animations */
         @keyframes pulse-icon {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -266,6 +296,87 @@
         .icon-workflow { animation: spin-icon 10s linear infinite reverse; }
         .icon-website path:nth-child(2) { animation: pulse-icon 4s ease-in-out infinite 1s; }
         .icon-optimization polyline { animation: pulse-icon 3.5s ease-in-out infinite; }
+
+        /* ------------------- */
+        /* --- WHY LAVO SECTION --- */
+        /* ------------------- */
+        #why-lavo {
+            background-color: rgba(13, 18, 33, 0.5);
+        }
+        .why-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: 1fr;
+        }
+        .why-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .why-card h3 {
+            color: var(--primary-blue-end);
+            margin-bottom: 16px;
+        }
+
+        /* ------------------- */
+        /* --- TEAM SECTION --- */
+        /* ------------------- */
+        #team {
+            text-align: center;
+        }
+        .team-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .team-content h3 {
+            text-align: center;
+            color: var(--primary-blue-end);
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            margin-top: 0;
+        }
+        .team-content p {
+            margin: 16px auto;
+            line-height: 1.8;
+        }
+
+        /* ------------------- */
+        /* --- RESULTS SECTION --- */
+        /* ------------------- */
+        .results-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: 1fr;
+        }
+        .result-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(30px);
+            will-change: opacity, transform;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .result-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .result-card h4 {
+            color: var(--accent-orange-end);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+        .result-card p {
+            margin: 0;
+        }
 
         /* ------------------- */
         /* --- PROCESS SECTION --- */
@@ -341,27 +452,51 @@
         }
         
         /* ------------------- */
-        /* --- HOW IT WORKS SECTION --- */
+        /* --- FAQ SECTION --- */
         /* ------------------- */
-        .how-it-works-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            text-align: center;
+        #faq {
+            background-color: rgba(13, 18, 33, 0.5);
         }
-        .how-it-works-step {
-            padding: 24px;
+        .faq-container {
+            max-width: 700px;
+            margin: 0 auto;
         }
-        .step-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 16px;
-            background: linear-gradient(180deg, var(--accent-orange-end), var(--accent-orange-start));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
+        .faq-item {
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 24px;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            font-weight: 600;
+            color: var(--text-light);
+            user-select: none;
+        }
+        .faq-question:hover {
+            color: var(--primary-blue-end);
+        }
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .faq-toggle.open {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            display: none;
+            color: var(--text-medium);
+            line-height: 1.8;
+            max-width: none;
+        }
+        .faq-answer.open {
+            display: block;
         }
 
         /* ------------------- */
@@ -416,7 +551,6 @@
         /* ------------------- */
         /* --- RESPONSIVE --- */
         /* ------------------- */
-        /* Tablet */
         @media (min-width: 768px) {
             .nav-links {
                 display: flex;
@@ -424,7 +558,10 @@
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .how-it-works-grid {
+            .why-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .results-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
             .footer-container {
@@ -433,7 +570,6 @@
             }
         }
         
-        /* Desktop */
         @media (min-width: 1200px) {
             .container {
                 padding: 0;
@@ -444,7 +580,6 @@
             }
         }
 
-        /* Wide Desktop */
         @media (min-width: 1600px) {
             :root {
                 --h1-size: 3.5rem;
@@ -467,7 +602,7 @@
                 <ul class="nav-links">
                     <li><a href="#services">Services</a></li>
                     <li><a href="#process">Process</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
             <a href="#cta" class="btn btn-primary">Get Free Quote</a>
@@ -479,36 +614,113 @@
         <!-- HERO SECTION -->
         <section id="hero" class="section">
             <div class="container hero-content">
-                <h1 class="gradient-text">Your Business, Intelligently Automated</h1>
-                <p>Capture every lead and automate follow-ups with intelligent workflows, custom-built for your success.</p>
+                <h1 class="gradient-text">More Leads. More Revenue. Built to Scale.</h1>
+                <p>We build the marketing and automation engine that captures leads, converts prospects, and grows your business without adding headcount.</p>
                 <a href="#cta" class="btn btn-accent">Get Your Free Automation Audit</a>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section id="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">2M+</div>
+                        <div class="stat-label">Organic Impressions/Month<br>(One Client, Google Alone)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3x</div>
+                        <div class="stat-label">Average Sales Increase<br>for Go-to-Market Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100s</div>
+                        <div class="stat-label">Custom Workflows Built</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">$M+</div>
+                        <div class="stat-label">Saved in Operational Costs</div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- SERVICES SECTION -->
         <section id="services" class="section">
             <div class="container">
-                <h2>A Unified System for Growth</h2>
+                <h2>Our Services</h2>
                 <div class="services-grid">
                     <div class="service-card reveal-card" style="transition-delay: 0.1s;">
                         <svg class="service-icon icon-lead-capture" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7.5" r="4.5"></circle><line x1="18" y1="12" x2="23" y2="17"></line><polyline points="23 12 23 17 18 17"></polyline></svg>
-                        <h3>Lead Capture & Automation</h3>
-                        <p>Never miss an opportunity. We build systems that instantly capture, qualify, and engage leads from any source.</p>
+                        <h3>Lead Generation & Marketing</h3>
+                        <p>We build the full marketing engine: SEO, content, paid, and outreach that generates qualified leads on autopilot.</p>
                     </div>
                     <div class="service-card reveal-card" style="transition-delay: 0.2s;">
                         <svg class="service-icon icon-workflow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
-                        <h3>Workflow Integration</h3>
-                        <p>We connect your existing tools into one seamless, efficient workflow, eliminating manual data entry and errors.</p>
+                        <h3>Sales Workflow Automation</h3>
+                        <p>We automate your sales follow-up, pipeline management, and outreach so your team closes more without doing more.</p>
                     </div>
                     <div class="service-card reveal-card" style="transition-delay: 0.3s;">
                         <svg class="service-icon icon-website" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                        <h3>Website + CRM Connection</h3>
-                        <p>Your website becomes a powerhouse, directly feeding your CRM with rich data to personalize customer journeys.</p>
+                        <h3>Website + CRM Integration</h3>
+                        <p>Your website becomes a lead machine, directly feeding your CRM with real-time data and triggering automated follow-up instantly.</p>
                     </div>
                     <div class="service-card reveal-card" style="transition-delay: 0.4s;">
                         <svg class="service-icon icon-optimization" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                        <h3>Ongoing Optimization</h3>
-                        <p>Automation isn't static. We continuously analyze and refine your systems for peak performance and ROI.</p>
+                        <h3>Go-to-Market Strategy</h3>
+                        <p>We build the full GTM system from scratch: positioning, channels, messaging, and the automation to run it all.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY LAVO SECTION -->
+        <section id="why-lavo" class="section">
+            <div class="container">
+                <h2>Why LAVO</h2>
+                <div class="why-grid">
+                    <div class="why-card">
+                        <h3>Custom, Not Cookie-Cutter</h3>
+                        <p>Every system we build is designed around your business, your tools, and your goals. No templates. No one-size-fits-all. No compromises.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>Marketing + Automation Together</h3>
+                        <p>Most agencies do one or the other. We connect both so your marketing drives leads and your automation converts them at scale.</p>
+                    </div>
+                    <div class="why-card">
+                        <h3>We've Done This Before</h3>
+                        <p>Our team has spent years inside complex B2B businesses, building the exact systems we now offer. We know what works at scale.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM SECTION -->
+        <section id="team" class="section">
+            <div class="container team-content">
+                <h3>Our Team</h3>
+                <p>50+ years of combined experience across sales, marketing, and operations.</p>
+                <p>We've built automation systems for industrial manufacturers, audio companies, mobile service businesses, and beauty industry leaders. We've created hundreds of custom workflows, helping businesses save millions in operational costs.</p>
+                <p>Our founder spent over a decade building marketing and automation systems for a multi-million dollar industrial manufacturer — growing their digital presence from near zero to 2 million monthly impressions with minimal ad spend.</p>
+                <p>When we partner with you, you get our full team: strategists, engineers, and operations experts dedicated to your success.</p>
+            </div>
+        </section>
+
+        <!-- RESULTS SECTION -->
+        <section id="results" class="section">
+            <div class="container">
+                <h2>Results We've Delivered</h2>
+                <div class="results-grid">
+                    <div class="result-card reveal-card">
+                        <h4>Industrial Manufacturing</h4>
+                        <p>Built a complete go-to-market engine from scratch. Result: 2M+ organic Google impressions per month with minimal ad spend, and 3x sales increase in 12 months.</p>
+                    </div>
+                    <div class="result-card reveal-card" style="transition-delay: 0.1s;">
+                        <h4>B2B Services Company</h4>
+                        <p>Redesigned their sales automation and lead nurturing system. Result: 3x sales volume in under 6 months with the same-sized team.</p>
+                    </div>
+                    <div class="result-card reveal-card" style="transition-delay: 0.2s;">
+                        <h4>Service Business</h4>
+                        <p>Rebuilt lead capture and CRM workflows. Result: Response time dropped from hours to minutes, pipeline visibility improved completely, and conversion rates improved 40%.</p>
                     </div>
                 </div>
             </div>
@@ -517,7 +729,7 @@
         <!-- PROCESS SECTION -->
         <section id="process" class="section">
             <div class="container">
-                <h2>How We Do It: From Chaos to Clarity</h2>
+                <h2>How We Work</h2>
                 <div class="process-layout">
                     <div class="process-visual">
                         <svg id="process-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
@@ -534,47 +746,84 @@
                         <div class="process-step" data-step="0">
                             <span>Step 1</span>
                             <h3>Discover</h3>
-                            <p>We dive deep into your current processes, identifying bottlenecks, manual tasks, and opportunities for automation.</p>
+                            <p>We audit your current marketing, sales, and operations, identifying exactly where leads are falling through the cracks and what to automate first.</p>
                         </div>
                         <div class="process-step" data-step="1">
                             <span>Step 2</span>
                             <h3>Strategize</h3>
-                            <p>We design a custom automation blueprint, mapping out the ideal workflows and selecting the right technology stack for your goals.</p>
+                            <p>We deliver a custom roadmap: which channels to activate, which workflows to build, and what to prioritize for the fastest results.</p>
                         </div>
                         <div class="process-step" data-step="2">
                             <span>Step 3</span>
                             <h3>Implement</h3>
-                            <p>Our experts build and integrate your new automated systems, ensuring a seamless transition with minimal disruption.</p>
+                            <p>We build everything: landing pages, automation sequences, CRM setup, integrations. You review and approve at every stage.</p>
                         </div>
                         <div class="process-step" data-step="3">
                             <span>Step 4</span>
                             <h3>Optimize</h3>
-                            <p>We launch, monitor, and refine. Your system continuously improves as we analyze data and fine-tune workflows for maximum efficiency.</p>
+                            <p>We monitor performance data and refine continuously. What's working gets scaled. What isn't gets fixed.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- HOW IT WORKS SECTION -->
-        <section id="how-it-works" class="section">
-            <div class="container">
-                <h2>Your Journey to Automation</h2>
-                <div class="how-it-works-grid">
-                    <div class="how-it-works-step reveal-card">
-                        <div class="step-number">01</div>
-                        <h3>Free Audit</h3>
-                        <p>Start with a no-obligation call to identify your key automation opportunities.</p>
+        <!-- FAQ SECTION -->
+        <section id="faq" class="section">
+            <div class="container faq-container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do I need a big budget to get started?</span>
+                        <span class="faq-toggle">&#8594;</span>
                     </div>
-                    <div class="how-it-works-step reveal-card" style="transition-delay: 0.1s;">
-                        <div class="step-number">02</div>
-                        <h3>Custom Plan</h3>
-                        <p>Receive a detailed strategy and a clear proposal tailored to your business needs.</p>
+                    <div class="faq-answer">
+                        <p>Not at all. We work with businesses of all sizes, from startups to enterprises. We'll design a solution that fits your budget and grows with you. Most clients see ROI within the first 3-6 months.</p>
                     </div>
-                    <div class="how-it-works-step reveal-card" style="transition-delay: 0.2s;">
-                        <div class="step-number">03</div>
-                        <h3>Launch & Grow</h3>
-                        <p>We implement the solution and provide ongoing support as you scale.</p>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How long does it take to see results?</span>
+                        <span class="faq-toggle">&#8594;</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We typically start seeing lead volume improvements within 4-6 weeks of launching your system. Full optimization takes 3-6 months as we test, learn, and refine. Your timeline depends on how complex your system is and how fast we can implement it.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do you work with businesses that already have a CRM?</span>
+                        <span class="faq-toggle">&#8594;</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Whether you use HubSpot, Pipedrive, Salesforce, or any other CRM, we can build custom workflows and integrations around your existing system. In fact, most of our clients come to us with existing tools that just need better automation and strategy.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is this just software setup or do you do the strategy too?</span>
+                        <span class="faq-toggle">&#8594;</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We do both. The software and automation are just the implementation. The strategy is what makes it work. We help you figure out which channels to use, how to message to your audience, where to capture leads, and how to nurture them. Then we build the system to execute that strategy automatically.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What industries do you work with?</span>
+                        <span class="faq-toggle">&#8594;</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We've worked with industrial manufacturers, B2B services companies, audio companies, mobile service businesses, and beauty industry leaders. If you sell B2B, have complex workflows, or need to generate leads at scale, we can help.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How is this different from hiring a marketing agency or software consultant?</span>
+                        <span class="faq-toggle">&#8594;</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most marketing agencies focus on ads or content. Most software consultants just implement tools. We do both, and we do it as a unified system. Your marketing feeds qualified leads into your automation, which converts them at scale. It's not separate services, it's one integrated engine built for your business.</p>
                     </div>
                 </div>
             </div>
@@ -583,9 +832,9 @@
         <!-- CTA SECTION -->
         <section id="cta" class="section">
             <div class="container cta-content">
-                <h2>Ready to Automate?</h2>
-                <p>Stop wasting time on repetitive tasks. Let's build a smarter, more efficient future for your business, starting today.</p>
-                <a href="mailto:hello@lavo.agency" class="btn btn-accent">Get Your Free Automation Audit</a>
+                <h2>Ready to Scale?</h2>
+                <p>Let's build the marketing and automation system that transforms your business. Get your free automation audit today.</p>
+                <a href="mailto:ops@lavo-systems.com" class="btn btn-accent">Get Your Free Automation Audit</a>
             </div>
         </section>
 
@@ -596,11 +845,11 @@
             <a href="#hero" class="footer-logo">LAVO</a>
             <ul class="footer-links">
                 <li><a href="#services">Services</a></li>
+                <li><a href="#why-lavo">Why LAVO</a></li>
                 <li><a href="#process">Process</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#cta">Contact</a></li>
+                <li><a href="#faq">FAQ</a></li>
             </ul>
-            <p class="copyright">&copy; 2024 LAVO Automation. All rights reserved.</p>
+            <p class="copyright">&copy; 2026 LAVO. All rights reserved.</p>
         </div>
     </footer>
 
@@ -638,16 +887,15 @@
         const processSVGPath = document.getElementById('process-path');
         const processSteps = document.querySelectorAll('.process-step');
         
-        // SVG d attributes for each state (same number of points for smooth morphing)
         const svgPaths = [
-            'M10,50 C20,10 30,90 40,50 C50,10 60,90 70,50 C80,10 90,90 90,50', // Tangled
-            'M5,50 C25,50 25,50 45,50 C65,50 65,50 75,50 C85,50 95,50 95,50', // Untangled/Straight
-            'M5,50 C25,50 25,50 45,50 C65,50 65,50 75,50 C85,50 95,50 95,50', // Flowing (same path, use class)
-            'M5,50 C25,50 25,50 45,50 C65,50 65,50 75,50 C85,50 95,50 95,50'  // Pulsing (same path, use class)
+            'M10,50 C20,10 30,90 40,50 C50,10 60,90 70,50 C80,10 90,90 90,50',
+            'M5,50 C25,50 25,50 45,50 C65,50 65,50 75,50 C85,50 95,50 95,50',
+            'M5,50 C25,50 25,50 45,50 C65,50 65,50 75,50 C85,50 95,50 95,50',
+            'M5,50 C25,50 25,50 45,50 C65,50 65,50 75,50 C85,50 95,50 95,50'
         ];
         
         if (processSVGPath) {
-            processSVGPath.setAttribute('d', svgPaths[0]); // Initial state
+            processSVGPath.setAttribute('d', svgPaths[0]);
         
             const stepObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -656,10 +904,8 @@
                         processSteps.forEach(s => s.classList.remove('is-active'));
                         entry.target.classList.add('is-active');
                         
-                        // Update SVG path
                         processSVGPath.setAttribute('d', svgPaths[stepIndex]);
                         
-                        // Update animation classes
                         processSVGPath.classList.remove('path-flowing', 'path-pulsing');
                         if (stepIndex === 2) {
                             processSVGPath.classList.add('path-flowing');
@@ -669,7 +915,7 @@
                     }
                 });
             }, { 
-                rootMargin: '-50% 0px -50% 0px', // Trigger when step is in the vertical center
+                rootMargin: '-50% 0px -50% 0px',
                 threshold: 0 
             });
 
@@ -677,6 +923,16 @@
         }
 
     });
+
+    // FAQ Toggle
+    function toggleFAQ(element) {
+        const faqItem = element.parentElement;
+        const answer = faqItem.querySelector('.faq-answer');
+        const toggle = element.querySelector('.faq-toggle');
+        
+        answer.classList.toggle('open');
+        toggle.classList.toggle('open');
+    }
     </script>
 
 </body>
