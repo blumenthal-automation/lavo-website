@@ -1,0 +1,6 @@
+{
+  "name": "lavo-website",
+  "public": true,
+  "buildCommand": "echo 'Static website'",
+  "outputDirectory": "."
+}
