@@ -1,6 +1,6 @@
 {
   "name": "lavo-website",
   "public": true,
-  "buildCommand": "echo 'Static website'",
-  "outputDirectory": "."
+  "buildCommand": "mkdir -p public && cp index.html public/",
+  "outputDirectory": "public"
 }
